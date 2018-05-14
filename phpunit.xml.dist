@@ -9,6 +9,11 @@
     <php>
         <const name="TESTS_ZEND_CONTROLLER_DISPATCHER_OB" value="false" />
     </php>
+    <testsuites>
+        <testsuite name="default">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./src</directory>

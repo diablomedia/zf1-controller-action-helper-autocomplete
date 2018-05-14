@@ -47,14 +47,14 @@ class Zend_Controller_Action_Helper_AutoCompleteTest extends PHPUnit\Framework\T
         Zend_Controller_Action_HelperBroker::resetHelpers();
         Zend_Controller_Action_HelperBroker::setPluginLoader(null);
 
-        $this->request = new Zend_Controller_Request_Http();
+        $this->request  = new Zend_Controller_Request_Http();
         $this->response = new Zend_Controller_Response_Cli();
-        $this->front = Zend_Controller_Front::getInstance();
+        $this->front    = Zend_Controller_Front::getInstance();
         $this->front->resetInstance();
         $this->front->setRequest($this->request)->setResponse($this->response);
 
         $this->viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
-        $this->layout = Zend_Layout::startMvc();
+        $this->layout       = Zend_Layout::startMvc();
     }
 
     /**
@@ -71,7 +71,7 @@ class Zend_Controller_Action_Helper_AutoCompleteTest extends PHPUnit\Framework\T
     {
         $scriptaculous = new Zend_Controller_Action_Helper_AutoCompleteScriptaculous();
 
-        $data = new stdClass;
+        $data      = new stdClass;
         $data->foo = 'bar';
         $data->bar = 'baz';
         try {
@@ -84,10 +84,10 @@ class Zend_Controller_Action_Helper_AutoCompleteTest extends PHPUnit\Framework\T
 
     public function testScriptaculousHelperCreatesHtmlMarkup()
     {
-        $scriptaculous = new Zend_Controller_Action_Helper_AutoCompleteScriptaculous();
+        $scriptaculous               = new Zend_Controller_Action_Helper_AutoCompleteScriptaculous();
         $scriptaculous->suppressExit = true;
-        $data = array('foo', 'bar', 'baz');
-        $formatted = $scriptaculous->direct($data);
+        $data                        = array('foo', 'bar', 'baz');
+        $formatted                   = $scriptaculous->direct($data);
         $this->assertContains('<ul>', $formatted);
         foreach ($data as $value) {
             $this->assertContains('<li>' . $value . '</li>', $formatted);
@@ -97,30 +97,30 @@ class Zend_Controller_Action_Helper_AutoCompleteTest extends PHPUnit\Framework\T
 
     public function testScriptaculousHelperSendsResponseByDefault()
     {
-        $scriptaculous = new Zend_Controller_Action_Helper_AutoCompleteScriptaculous();
+        $scriptaculous               = new Zend_Controller_Action_Helper_AutoCompleteScriptaculous();
         $scriptaculous->suppressExit = true;
-        $data = array('foo', 'bar', 'baz');
-        $encoded = $scriptaculous->direct($data);
-        $body = $this->response->getBody();
+        $data                        = array('foo', 'bar', 'baz');
+        $encoded                     = $scriptaculous->direct($data);
+        $body                        = $this->response->getBody();
         $this->assertSame($encoded, $body);
     }
 
     public function testScriptaculousHelperDisablesLayoutsAndViewRendererByDefault()
     {
-        $scriptaculous = new Zend_Controller_Action_Helper_AutoCompleteScriptaculous();
+        $scriptaculous               = new Zend_Controller_Action_Helper_AutoCompleteScriptaculous();
         $scriptaculous->suppressExit = true;
-        $data = array('foo', 'bar', 'baz');
-        $encoded = $scriptaculous->direct($data);
+        $data                        = array('foo', 'bar', 'baz');
+        $encoded                     = $scriptaculous->direct($data);
         $this->assertFalse($this->layout->isEnabled());
         $this->assertTrue($this->viewRenderer->getNoRender());
     }
 
     public function testScriptaculousHelperCanEnableLayoutsAndViewRenderer()
     {
-        $scriptaculous = new Zend_Controller_Action_Helper_AutoCompleteScriptaculous();
+        $scriptaculous               = new Zend_Controller_Action_Helper_AutoCompleteScriptaculous();
         $scriptaculous->suppressExit = true;
-        $data = array('foo', 'bar', 'baz');
-        $encoded = $scriptaculous->direct($data, false, true);
+        $data                        = array('foo', 'bar', 'baz');
+        $encoded                     = $scriptaculous->direct($data, false, true);
         $this->assertTrue($this->layout->isEnabled());
         $this->assertFalse($this->viewRenderer->getNoRender());
     }

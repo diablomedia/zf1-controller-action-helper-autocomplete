@@ -47,14 +47,14 @@ class Zend_Controller_Action_Helper_AutoCompleteDojoTest extends PHPUnit\Framewo
         Zend_Controller_Action_HelperBroker::resetHelpers();
         Zend_Controller_Action_HelperBroker::setPluginLoader(null);
 
-        $this->request = new Zend_Controller_Request_Http();
+        $this->request  = new Zend_Controller_Request_Http();
         $this->response = new Zend_Controller_Response_Cli();
-        $this->front = Zend_Controller_Front::getInstance();
+        $this->front    = Zend_Controller_Front::getInstance();
         $this->front->resetInstance();
         $this->front->setRequest($this->request)->setResponse($this->response);
 
         $this->viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
-        $this->layout = Zend_Layout::startMvc();
+        $this->layout       = Zend_Layout::startMvc();
     }
 
     /**
@@ -89,7 +89,7 @@ class Zend_Controller_Action_Helper_AutoCompleteDojoTest extends PHPUnit\Framewo
         $this->assertSame($data, $test);
         $this->assertFalse($this->layout->isEnabled());
         $headers = $this->response->getHeaders();
-        $found = false;
+        $found   = false;
         foreach ($headers as $header) {
             if ('Content-Type' == $header['name']) {
                 if ('application/json' == $header['value']) {
@@ -98,13 +98,13 @@ class Zend_Controller_Action_Helper_AutoCompleteDojoTest extends PHPUnit\Framewo
                 break;
             }
         }
-        $this->assertTrue($found, "JSON content-type header not found");
+        $this->assertTrue($found, 'JSON content-type header not found');
     }
 
     public function testDojoHelperEncodesToJson()
     {
-        $dojo = new Zend_Controller_Action_Helper_AutoCompleteDojo();
-        $data = array('foo', 'bar', 'baz');
+        $dojo    = new Zend_Controller_Action_Helper_AutoCompleteDojo();
+        $data    = array('foo', 'bar', 'baz');
         $encoded = $dojo->direct($data, false);
         $decoded = Zend_Json::decode($encoded);
         $this->assertContains('items', array_keys($decoded));
@@ -120,12 +120,12 @@ class Zend_Controller_Action_Helper_AutoCompleteDojoTest extends PHPUnit\Framewo
 
     public function testDojoHelperSendsResponseByDefault()
     {
-        $dojo = new Zend_Controller_Action_Helper_AutoCompleteDojo();
+        $dojo               = new Zend_Controller_Action_Helper_AutoCompleteDojo();
         $dojo->suppressExit = true;
-        $data = array('foo', 'bar', 'baz');
-        $encoded = $dojo->direct($data);
-        $decoded = Zend_Json::decode($encoded);
-        $test    = array();
+        $data               = array('foo', 'bar', 'baz');
+        $encoded            = $dojo->direct($data);
+        $decoded            = Zend_Json::decode($encoded);
+        $test               = array();
         foreach ($decoded['items'] as $item) {
             $test[] = $item['name'];
         }
@@ -136,20 +136,20 @@ class Zend_Controller_Action_Helper_AutoCompleteDojoTest extends PHPUnit\Framewo
 
     public function testDojoHelperDisablesLayoutsAndViewRendererByDefault()
     {
-        $dojo = new Zend_Controller_Action_Helper_AutoCompleteDojo();
+        $dojo               = new Zend_Controller_Action_Helper_AutoCompleteDojo();
         $dojo->suppressExit = true;
-        $data = array('foo', 'bar', 'baz');
-        $encoded = $dojo->direct($data);
+        $data               = array('foo', 'bar', 'baz');
+        $encoded            = $dojo->direct($data);
         $this->assertFalse($this->layout->isEnabled());
         $this->assertTrue($this->viewRenderer->getNoRender());
     }
 
     public function testDojoHelperCanEnableLayoutsAndViewRenderer()
     {
-        $dojo = new Zend_Controller_Action_Helper_AutoCompleteDojo();
+        $dojo               = new Zend_Controller_Action_Helper_AutoCompleteDojo();
         $dojo->suppressExit = true;
-        $data = array('foo', 'bar', 'baz');
-        $encoded = $dojo->direct($data, false, true);
+        $data               = array('foo', 'bar', 'baz');
+        $encoded            = $dojo->direct($data, false, true);
         $this->assertTrue($this->layout->isEnabled());
         $this->assertFalse($this->viewRenderer->getNoRender());
     }
@@ -158,13 +158,13 @@ class Zend_Controller_Action_Helper_AutoCompleteDojoTest extends PHPUnit\Framewo
      */
     public function testDojoHelperEncodesUnicodeChars()
     {
-        $dojo = new Zend_Controller_Action_Helper_AutoCompleteDojo();
+        $dojo               = new Zend_Controller_Action_Helper_AutoCompleteDojo();
         $dojo->suppressExit = true;
-        $data = array ('garçon', 'schließen', 'Helgi Þormar Þorbjörnsson');
-        $encoded = $dojo->direct($data);
-        $body = $this->response->getBody();
-        $decoded = Zend_Json::decode($encoded);
-        $test = array ();
+        $data               = array('garçon', 'schließen', 'Helgi Þormar Þorbjörnsson');
+        $encoded            = $dojo->direct($data);
+        $body               = $this->response->getBody();
+        $decoded            = Zend_Json::decode($encoded);
+        $test               = array();
         foreach ($decoded['items'] as $item) {
             $test[] = $item['name'];
         }
