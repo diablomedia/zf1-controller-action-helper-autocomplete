@@ -41,7 +41,7 @@ class Zend_Controller_Action_Helper_AutoCompleteDojoTest extends PHPUnit\Framewo
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         Zend_Controller_Action_Helper_AutoCompleteDojoTest_LayoutOverride::resetMvcInstance();
         Zend_Controller_Action_HelperBroker::resetHelpers();
@@ -63,7 +63,7 @@ class Zend_Controller_Action_Helper_AutoCompleteDojoTest extends PHPUnit\Framewo
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
