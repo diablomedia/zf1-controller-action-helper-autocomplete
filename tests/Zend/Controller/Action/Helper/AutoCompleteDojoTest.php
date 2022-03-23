@@ -70,10 +70,10 @@ class Zend_Controller_Action_Helper_AutoCompleteDojoTest extends PHPUnit\Framewo
     public function testConcreteImplementationsDeriveFromAutoCompleteBaseClass()
     {
         $dojo = new Zend_Controller_Action_Helper_AutoCompleteDojo();
-        $this->assertTrue($dojo instanceof Zend_Controller_Action_Helper_AutoComplete_Abstract);
+        $this->assertInstanceOf(Zend_Controller_Action_Helper_AutoComplete_Abstract::class, $dojo);
 
         $scriptaculous = new Zend_Controller_Action_Helper_AutoCompleteScriptaculous();
-        $this->assertTrue($scriptaculous instanceof Zend_Controller_Action_Helper_AutoComplete_Abstract);
+        $this->assertInstanceOf(Zend_Controller_Action_Helper_AutoComplete_Abstract::class, $scriptaculous);
     }
 
     public function testEncodeJsonProxiesToJsonActionHelper()
