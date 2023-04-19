@@ -35,6 +35,12 @@
  */
 class Zend_Controller_Action_Helper_AutoCompleteTest extends PHPUnit\Framework\TestCase
 {
+    protected $request;
+    protected $response;
+    protected $front;
+    protected $viewRenderer;
+    protected $layout;
+
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.

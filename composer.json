@@ -9,12 +9,13 @@
     "homepage": "http://framework.zend.com/",
     "license": "BSD-3-Clause",
     "prefer-stable": true,
+    "minimum-stability": "dev",
     "require": {
-        "php": "^7.4 || ~8.0.0 || ~8.1.0",
-        "diablomedia/zendframework1-controller": "^1.0.3",
-        "diablomedia/zendframework1-controller-action-helper-json": "^1.0.0",
-        "diablomedia/zendframework1-dojo": "^1.0.0",
-        "diablomedia/zendframework1-layout": "^1.0.0"
+        "php": "^7.4 || ~8.0.0 || ~8.1.0 || ~8.2.0",
+        "diablomedia/zendframework1-controller": "dev-php-82 as 1.0.3",
+        "diablomedia/zendframework1-controller-action-helper-json": "dev-php-82 as 1.0.0",
+        "diablomedia/zendframework1-dojo": "dev-php-82 as 1.0.0",
+        "diablomedia/zendframework1-layout": "dev-php-82 as 1.0.0"
     },
     "autoload": {
         "psr-0": {
@@ -32,8 +33,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5.10",
-        "phpstan/phpstan": "1.7.15",
-        "friendsofphp/php-cs-fixer": "3.8.0",
+        "phpstan/phpstan": "1.10.13",
+        "friendsofphp/php-cs-fixer": "3.16.0",
         "maglnet/composer-require-checker": "^3.0.0",
         "phpro/grumphp-shim": "^1.5.0"
     },
@@ -50,5 +51,10 @@
         "test-with-coverage": "phpunit --coverage-clover=clover.xml",
         "phpstan": "phpstan analyze -c phpstan.neon --no-progress --ansi",
         "style-check": "php-cs-fixer fix --dry-run -vv"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpro/grumphp-shim": true
+        }
     }
 }
