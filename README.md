@@ -6,4 +6,7 @@
 [![Total Downloads](https://poser.pugx.org/diablomedia/zendframework1-controller-action-helper-autocomplete/downloads)](https://packagist.org/packages/diablomedia/zendframework1-controller-action-helper-autocomplete)
 [![License](https://poser.pugx.org/diablomedia/zendframework1-controller-action-helper-autocomplete/license)](https://packagist.org/packages/diablomedia/zendframework1-controller-action-helper-autocomplete)
 
+> [!WARNING]  
+> We've archived this repo as we're no longer using or maintaining Zend Framework 1
+
 This is just the Zend_Controller_Action_Helper_AutoComplete component extracted from our fork of the Zend Framework 1 repo (https://github.com/diablomedia/zf1).
